@@ -20,7 +20,7 @@ function removeHashFromArr(arr) {
 }
 
 let arrWithoutHash = removeHashFromArr(wordsArr);
-let strWithoutHash = arrWithoutHash.toString(" ");
+let strWithoutHash = arrWithoutHash.join(" ");
 console.log(strWithoutHash);
 
 //z uzyciem .slise();
