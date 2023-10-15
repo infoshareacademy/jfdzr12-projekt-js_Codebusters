@@ -20,8 +20,7 @@ console.log(strSplited);
 
 function splitTextUpper(arr) {
   for (let i = 0; i < arr.length; i++) {
-    let strSplitedIndex = arr[i];
-    arr[i] = strSplitedIndex[0].toUpperCase() + strSplitedIndex.substring(1);
+    arr[i] = arr[i][0].toUpperCase() + arr[i].substring(1);
   }
   return arr;
 }
