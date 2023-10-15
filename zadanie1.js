@@ -1,8 +1,6 @@
 // Ekstraktor hashtagów
 // Bazując na danym ciągu znaków, wypisz wszystkie hashtagi w nim zawarte.
-
 // Przykładowo dla napisu Pierwszy #projekt #javascript powinno to być
-
 // projekt
 // javascript
 
