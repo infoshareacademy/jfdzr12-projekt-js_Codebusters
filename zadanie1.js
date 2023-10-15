@@ -24,5 +24,5 @@ let strWithoutHash = arrWithoutHash.toString(" ");
 console.log(strWithoutHash);
 
 //z uzyciem .slise();
-// console.log(text.slice(10, 17));
-// console.log(text.slice(19, 29));
+console.log(text.slice(10, 17));
+console.log(text.slice(19, 29));
