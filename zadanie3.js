@@ -17,14 +17,16 @@ let minNumberChar = 1;
 let minSpecialChar = 1;
 let minPassLength = 12;
 let maxPassLength = 24;
+let passCharLength = minPassLength;
 
 const lowerLetterCharsList = "abcdefghijklmnopqrstuvwxyz";
 const upperLetterCharsList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const numbersCharsList = "1234567890";
 const specialCharsList = "!@#$%^&*()_+[]{}|;:,.<>?";
+const allCharsList =
+  "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+[]{}|;:,.<>?";
 
-let passLength = minPassLength;
-
+//Function to generate random chars from list of string
 function randomChar(charList) {
   let charactersLength = charList.length;
   return charList.charAt(Math.floor(Math.random() * charactersLength));
@@ -39,3 +41,35 @@ console.log(lowerLetterChar);
 console.log(upperLetterChar);
 console.log(numbersChar);
 console.log(specialChar);
+
+//Function to generate another password chars
+function randomCharsList(charsNumber) {
+  let charsList = "";
+  const allCharsListLength = allCharsList.length;
+  let counter = 0;
+  while (counter < charsNumber) {
+    charsList += allCharsList.charAt(
+      Math.floor(Math.random() * allCharsListLength)
+    );
+    counter += 1;
+  }
+  return charsList;
+}
+
+//Length of another password chars
+let randomCharsLength =
+  passCharLength -
+  minLowerLetterChar -
+  minUpperLetterChar -
+  minNumberChar -
+  minSpecialChar;
+console.log(randomCharsLength);
+
+//List of another password chars
+let randomChars = randomCharsList(randomCharsLength);
+console.log(randomChars);
+
+let generatedPassword =
+  lowerLetterChar + upperLetterChar + numbersChar + specialChar + randomChars;
+
+console.log(generatedPassword);
