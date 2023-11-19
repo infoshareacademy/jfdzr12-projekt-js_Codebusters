@@ -225,6 +225,14 @@ body {
   color: #343232;
 }
 
+.portfolio__title {
+  margin: 30px auto 0px;
+  color: #343232;
+  text-align: center;
+  font-style: normal;
+  font-size: 1.8rem;
+}
+
 .overlay {
   display: none;
   position: fixed;

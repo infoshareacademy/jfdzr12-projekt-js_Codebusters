@@ -67,6 +67,12 @@ photos.forEach((photo) => {
     image.src = `${foundProduct.image}`;
     modal.prepend(image);
 
+    //TITLE CREATE AND DISPLAY
+    const title = document.createElement("h1");
+    title.classList.add("portfolio__title");
+    title.innerText = `${foundProduct.title}`;
+    modal.prepend(title);
+
     //CLOSE MODAL
     modal.append(buttonClose);
     buttonClose.addEventListener("click", (e) => {
