@@ -201,21 +201,37 @@ body {
 .portfolio__modal {
   height: 400px;
   width: 700px;
-  background-color: aquamarine;
+  background-color: #ffffff;
   position: absolute;
   z-index: 1;
   display: flex;
   border: 2px solid #929292;
 }
+
 .portfolio__image {
   position: relative;
-  width: 250px;
+  width: 40%;
   border: 2px solid #929292;
-  margin: auto 30px;
-  /* height: auto; */
+  margin: 50px 30px;
 }
 
 .modal__button-close {
-  height: 20px;
-  width: 20px;
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  margin-right: 16px;
+  height: 24px;
+  width: 24px;
+  color: #343232;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0000005a;
+  z-index: 0;
 }
