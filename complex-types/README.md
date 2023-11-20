@@ -15,6 +15,7 @@ const item = {
 
 enrichWithGrossValue(item, 0.23) // { name: 'Candy', value: { net: 2, gross: 2.46 } }
 
+
 ```
 
 ## Dodanie produktu do koszyka
