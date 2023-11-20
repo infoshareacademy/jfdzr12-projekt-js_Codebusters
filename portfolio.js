@@ -54,31 +54,38 @@ photos.forEach((photo) => {
     portfolioSection.prepend(overlay);
 
     // OVERLAY DISPLAY
-    modal.style.display = "block";
     overlay.style.display = "block";
     document.body.style.overflow = "hidden";
 
     //IMAGE CREATE AND DISPLAY
+    const imageContainer = document.createElement("div");
+    imageContainer.classList.add("portfolio__image-container");
+    modal.prepend(imageContainer);
+
     const image = document.createElement("img");
     image.classList.add("portfolio__image");
     const foundProduct = products.find(
       (element) => element.id == photo.attributes["data-id"].value
     );
     image.src = `${foundProduct.image}`;
-    modal.prepend(image);
+    imageContainer.prepend(image);
+
+    //INFO CONTAINER CREATE AND DISPLAY
+    const infoContainer = document.createElement("div");
+    infoContainer.classList.add("portfolio__info-container");
+    modal.append(infoContainer);
 
     //TITLE CREATE AND DISPLAY
-    const title = document.createElement("h1");
+    const title = document.createElement("h2");
     title.classList.add("portfolio__title");
     title.innerText = `${foundProduct.title}`;
-    modal.prepend(title);
+    infoContainer.prepend(title);
 
     //CLOSE MODAL
     modal.append(buttonClose);
     buttonClose.addEventListener("click", (e) => {
       modal.remove();
       // OVERLAY NONE
-      modal.style.display = "none";
       overlay.style.display = "none";
       document.body.style.overflow = "auto";
     });
