@@ -199,7 +199,7 @@ body {
 
 /* JS MODAL */
 .portfolio__modal {
-  height: 400px;
+  height: 470px;
   width: 700px;
   background-color: #ffffff;
   position: absolute;
@@ -247,6 +247,14 @@ body {
   text-align: left;
   font-style: normal;
   font-size: 1.8rem;
+}
+
+.portfolio__price {
+  margin: 20px;
+  color: #343232;
+  text-align: left;
+  font-style: normal;
+  font-size: 1.5rem;
 }
 
 .portfolio__tags-container {
@@ -311,4 +319,46 @@ body {
   height: 100%;
   background-color: #0000005a;
   z-index: 0;
+}
+
+.basket__modal {
+  /* height: 470px; */
+  width: 700px;
+  background-color: #ffffff;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  box-shadow: 0px 0px 36px -24px rgba(66, 68, 90, 1);
+}
+
+.basket__items-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.basket__image-container {
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+}
+
+.basket__image {
+  position: relative;
+  height: 50px;
+  width: 80px;
+  border: 2px solid #bbb9b9;
+  margin: 10px;
+  border-radius: 20px;
+}
+
+.price-modal__button-close {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  margin-right: 16px;
+  height: 24px;
+  width: 24px;
+  color: #343232;
 }
