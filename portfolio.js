@@ -34,7 +34,6 @@ const products = [
 ];
 
 const photos = document.querySelectorAll(".photos");
-console.log(photos);
 
 const portfolioSection = document.querySelector(".portfolio_photos");
 
@@ -48,13 +47,11 @@ photos.forEach((photo) => {
     // OVERLAY CREATE
     const overlay = document.createElement("div");
     overlay.classList.add("overlay");
-    portfolioSection.prepend(overlay);
+    document.body.appendChild(overlay);
 
-    // OVERLAY DISPLAY
     overlay.style.display = "block";
     document.body.style.overflow = "hidden";
 
-    // IMAGE CREATE AND DISPLAY
     const imageContainer = document.createElement("div");
     imageContainer.classList.add("portfolio__image-container");
     modal.prepend(imageContainer);
@@ -67,24 +64,20 @@ photos.forEach((photo) => {
     image.src = `${foundProduct.image}`;
     imageContainer.prepend(image);
 
-    // INFO CONTAINER CREATE AND DISPLAY
     const infoContainer = document.createElement("div");
     infoContainer.classList.add("portfolio__info-container");
     modal.append(infoContainer);
 
-    // TITLE CREATE AND DISPLAY
     const title = document.createElement("h2");
     title.classList.add("portfolio__title");
     title.innerText = `${foundProduct.title}`;
     infoContainer.prepend(title);
 
-    // PRICE CREATE AND DISPLAY
     const price = document.createElement("p");
     price.classList.add("portfolio__price");
     price.innerText = `${foundProduct.cost}`;
     infoContainer.append(price);
 
-    // TAGS CREATE AND DISPLAY
     const tagsContainer = document.createElement("div");
     tagsContainer.classList.add("portfolio__tags-container");
 
@@ -96,14 +89,11 @@ photos.forEach((photo) => {
       infoContainer.append(tagsContainer);
     });
 
-    // LOCATION CREATE AND DISPLAY
     const locationText = document.createElement("p");
     locationText.classList.add("portfolio__location-text");
     locationText.innerText = `Location: ${foundProduct.location}`;
-
     infoContainer.append(locationText);
 
-    // BUTTON BUY CREATE AND DISPLAY
     const buttonBuy = document.createElement("button");
     buttonBuy.classList.add("portfolio__button-buy");
     buttonBuy.innerHTML = "Add to basket";
@@ -111,22 +101,17 @@ photos.forEach((photo) => {
 
     buttonBuy.addEventListener("click", addToLocalStorage);
 
-    //ADD TO LOCAL STORAGE
     function addToLocalStorage() {
       let basket = JSON.parse(localStorage.getItem("boughtProducts"));
 
-      // if empty
       if (!basket) {
         basket = [];
       }
 
       basket.push(foundProduct);
-      console.log(basket);
-
       localStorage.setItem("boughtProducts", JSON.stringify(basket));
     }
 
-    // CLOSE MODAL
     const buttonClose = document.createElement("button");
     buttonClose.innerHTML = "x";
     buttonClose.classList.add("modal__button-close");
@@ -141,7 +126,6 @@ photos.forEach((photo) => {
 
     function closeModal() {
       modal.remove();
-      // OVERLAY NONE
       overlay.style.display = "none";
       document.body.style.overflow = "auto";
     }
@@ -178,51 +162,49 @@ const basketSection = document.querySelector(".header__links--basket");
 
 console.log("BASKET SECTION", basketSection);
 
-// BASKET MODAL CREATE
 basketSection.addEventListener("click", (e) => {
   const basketModal = document.createElement("div");
   basketModal.classList.add("basket__modal");
   basketSection.prepend(basketModal);
 
   let basket = JSON.parse(localStorage.getItem("boughtProducts"));
-  console.log(basket);
 
-  //BASKET PRODUCT CONTAINER
+  if (!basket) {
+    const basketEmptyContainer = document.createElement("div");
+    basketEmptyContainer.classList.add("basket__empty-container");
+    basketModal.prepend(basketEmptyContainer);
 
-  // if(!basket) {
-  //   const emptybasket
-  // }
+    const basketEmptyText = document.createElement("p");
+    basketEmptyText.classList.add("basket__empty-text");
+    basketEmptyText.innerHTML = "EMPTY BASKET";
+    basketEmptyContainer.prepend(basketEmptyText);
+  } else {
+    basket.forEach((element) => {
+      const basketProductContainer = document.createElement("div");
+      basketProductContainer.classList.add("basket__items-container");
+      basketModal.prepend(basketProductContainer);
 
-  basket.forEach((element) => {
-    const basketProductContainer = document.createElement("div");
-    basketProductContainer.classList.add("basket__items-container");
-    basketModal.prepend(basketProductContainer);
+      const basketImageContainer = document.createElement("div");
+      basketImageContainer.classList.add("basket__image-container");
+      basketProductContainer.prepend(basketImageContainer);
 
-    // BASKET IMAGE CREATE AND DISPLAY
-    const basketImageContainer = document.createElement("div");
-    basketImageContainer.classList.add("basket__image-container");
-    basketProductContainer.prepend(basketImageContainer);
+      const basketImage = document.createElement("img");
+      basketImage.classList.add("basket__image");
+      basketImage.src = `${element.image}`;
+      basketImageContainer.prepend(basketImage);
 
-    const basketImage = document.createElement("img");
-    basketImage.classList.add("basket__image");
-    basketImage.src = `${element.image}`;
+      const basketTitle = document.createElement("p");
+      basketTitle.classList.add("basket__title");
+      basketTitle.innerText = `${element.title}`;
+      basketImageContainer.append(basketTitle);
 
-    basketImageContainer.prepend(basketImage);
+      const basketPrice = document.createElement("p");
+      basketPrice.classList.add("basket__price");
+      basketPrice.innerText = `${element.cost}`;
+      basketImageContainer.append(basketPrice);
+    });
+  }
 
-    // TITLE CREATE AND DISPLAY
-    const basketTitle = document.createElement("p");
-    basketTitle.classList.add("basket__title");
-    basketTitle.innerText = `${element.title}`;
-    basketImageContainer.append(basketTitle);
-
-    // PRICE CREATE AND DISPLAY
-    const basketPrice = document.createElement("p");
-    basketPrice.classList.add("basket__price");
-    basketPrice.innerText = `${element.cost}`;
-    basketImageContainer.append(basketPrice);
-  });
-
-  // PRICE CLOSE MODAL
   const basketButtonClose = document.createElement("button");
   basketButtonClose.innerHTML = "x";
   basketButtonClose.classList.add("price-modal__button-close");
@@ -235,14 +217,12 @@ basketSection.addEventListener("click", (e) => {
     }
   });
 
-  // OVERLAY CREATE
   const overlay = document.createElement("div");
   overlay.classList.add("overlay");
-  portfolioSection.prepend(overlay);
+  document.body.appendChild(overlay);
 
   function basketCloseModal() {
     basketModal.remove();
-    // OVERLAY NONE
     overlay.style.display = "none";
     document.body.style.overflow = "auto";
   }
