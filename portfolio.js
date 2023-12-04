@@ -33,9 +33,9 @@ const products = [
   },
 ];
 
-const photos = document.querySelectorAll(".photos");
+const photos = document.querySelectorAll(".portfolio__photos");
 
-const portfolioSection = document.querySelector(".portfolio_photos");
+const portfolioSection = document.querySelector(".portfolio__items");
 
 photos.forEach((photo) => {
   photo.addEventListener("click", (e) => {
