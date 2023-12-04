@@ -362,3 +362,12 @@ body {
   width: 24px;
   color: #343232;
 }
+
+.basket__empty-container {
+  height: 400px;
+}
+
+.basket__empty-text {
+  text-align: center;
+  margin: 200px;
+}

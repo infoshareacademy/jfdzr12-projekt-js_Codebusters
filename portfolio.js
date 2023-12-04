@@ -2,7 +2,7 @@ const products = [
   {
     id: "0",
     image: "examples_photos/family.jpg",
-    title: "Family photoshoot",
+    title: "Family photo shoot",
     tags: ["family", "love"],
     location: "studio",
     cost: "10$",
@@ -10,7 +10,7 @@ const products = [
   {
     id: "1",
     image: "examples_photos/newborn.jpg",
-    title: "Newborn photoshoot",
+    title: "Newborn photo shoot",
     tags: ["newborn", "baby"],
     location: "home, studio",
     cost: "15$",
@@ -18,7 +18,7 @@ const products = [
   {
     id: "2",
     image: "examples_photos/wedding.jpg",
-    title: "Wedding photoshoot",
+    title: "Wedding photo shoot",
     tags: ["wedding", "love"],
     location: "outdoors, studio",
     cost: "10$",
@@ -34,7 +34,6 @@ const products = [
 ];
 
 const photos = document.querySelectorAll(".photos");
-console.log(photos);
 
 const portfolioSection = document.querySelector(".portfolio_photos");
 
@@ -45,12 +44,10 @@ photos.forEach((photo) => {
     modal.classList.add("portfolio__modal");
     portfolioSection.prepend(modal);
 
-    // OVERLAY CREATE
+    // OVERLAY CREATE AND DISPLAY
     const overlay = document.createElement("div");
     overlay.classList.add("overlay");
-    portfolioSection.prepend(overlay);
-
-    // OVERLAY DISPLAY
+    document.body.appendChild(overlay);
     overlay.style.display = "block";
     document.body.style.overflow = "hidden";
 
@@ -100,7 +97,6 @@ photos.forEach((photo) => {
     const locationText = document.createElement("p");
     locationText.classList.add("portfolio__location-text");
     locationText.innerText = `Location: ${foundProduct.location}`;
-
     infoContainer.append(locationText);
 
     // BUTTON BUY CREATE AND DISPLAY
@@ -115,14 +111,11 @@ photos.forEach((photo) => {
     function addToLocalStorage() {
       let basket = JSON.parse(localStorage.getItem("boughtProducts"));
 
-      // if empty
       if (!basket) {
         basket = [];
       }
 
       basket.push(foundProduct);
-      console.log(basket);
-
       localStorage.setItem("boughtProducts", JSON.stringify(basket));
     }
 
@@ -176,8 +169,6 @@ console.log("Add basket section");
 
 const basketSection = document.querySelector(".header__links--basket");
 
-console.log("BASKET SECTION", basketSection);
-
 // BASKET MODAL CREATE
 basketSection.addEventListener("click", (e) => {
   const basketModal = document.createElement("div");
@@ -185,42 +176,44 @@ basketSection.addEventListener("click", (e) => {
   basketSection.prepend(basketModal);
 
   let basket = JSON.parse(localStorage.getItem("boughtProducts"));
-  console.log(basket);
 
-  //BASKET PRODUCT CONTAINER
+  if (!basket) {
+    const basketEmptyContainer = document.createElement("div");
+    basketEmptyContainer.classList.add("basket__empty-container");
+    basketModal.prepend(basketEmptyContainer);
 
-  // if(!basket) {
-  //   const emptybasket
-  // }
+    const basketEmptyText = document.createElement("p");
+    basketEmptyText.classList.add("basket__empty-text");
+    basketEmptyText.innerHTML = "EMPTY BASKET";
+    basketEmptyContainer.prepend(basketEmptyText);
+  } else {
+    basket.forEach((element) => {
+      const basketProductContainer = document.createElement("div");
+      basketProductContainer.classList.add("basket__items-container");
+      basketModal.prepend(basketProductContainer);
 
-  basket.forEach((element) => {
-    const basketProductContainer = document.createElement("div");
-    basketProductContainer.classList.add("basket__items-container");
-    basketModal.prepend(basketProductContainer);
+      const basketImageContainer = document.createElement("div");
+      basketImageContainer.classList.add("basket__image-container");
+      basketProductContainer.prepend(basketImageContainer);
 
-    // BASKET IMAGE CREATE AND DISPLAY
-    const basketImageContainer = document.createElement("div");
-    basketImageContainer.classList.add("basket__image-container");
-    basketProductContainer.prepend(basketImageContainer);
+      const basketImage = document.createElement("img");
+      basketImage.classList.add("basket__image");
+      basketImage.src = `${element.image}`;
+      basketImageContainer.prepend(basketImage);
 
-    const basketImage = document.createElement("img");
-    basketImage.classList.add("basket__image");
-    basketImage.src = `${element.image}`;
+      // TITLE CREATE AND DISPLAY
+      const basketTitle = document.createElement("p");
+      basketTitle.classList.add("basket__title");
+      basketTitle.innerText = `${element.title}`;
+      basketImageContainer.append(basketTitle);
 
-    basketImageContainer.prepend(basketImage);
-
-    // TITLE CREATE AND DISPLAY
-    const basketTitle = document.createElement("p");
-    basketTitle.classList.add("basket__title");
-    basketTitle.innerText = `${element.title}`;
-    basketImageContainer.append(basketTitle);
-
-    // PRICE CREATE AND DISPLAY
-    const basketPrice = document.createElement("p");
-    basketPrice.classList.add("basket__price");
-    basketPrice.innerText = `${element.cost}`;
-    basketImageContainer.append(basketPrice);
-  });
+      // PRICE CREATE AND DISPLAY
+      const basketPrice = document.createElement("p");
+      basketPrice.classList.add("basket__price");
+      basketPrice.innerText = `${element.cost}`;
+      basketImageContainer.append(basketPrice);
+    });
+  }
 
   // PRICE CLOSE MODAL
   const basketButtonClose = document.createElement("button");
@@ -238,7 +231,7 @@ basketSection.addEventListener("click", (e) => {
   // OVERLAY CREATE
   const overlay = document.createElement("div");
   overlay.classList.add("overlay");
-  portfolioSection.prepend(overlay);
+  document.body.appendChild(overlay);
 
   function basketCloseModal() {
     basketModal.remove();
