@@ -5,7 +5,7 @@ const products = [
     title: "Family photo shoot",
     tags: ["family", "love"],
     location: "studio",
-    cost: "10$",
+    cost: 10,
   },
   {
     id: "1",
@@ -13,7 +13,7 @@ const products = [
     title: "Newborn photo shoot",
     tags: ["newborn", "baby"],
     location: "home, studio",
-    cost: "15$",
+    cost: 15,
   },
   {
     id: "2",
@@ -21,7 +21,7 @@ const products = [
     title: "Wedding photo shoot",
     tags: ["wedding", "love"],
     location: "outdoors, studio",
-    cost: "10$",
+    cost: 10,
   },
   {
     id: "3",
@@ -29,12 +29,12 @@ const products = [
     title: "Air2Air sessions",
     tags: ["air2air", "nature"],
     location: "outdoors, air",
-    cost: "100$",
+    cost: 100,
   },
 ];
 
+// PORTFOLIO
 const photos = document.querySelectorAll(".portfolio__photos");
-
 const portfolioSection = document.querySelector(".portfolio__items");
 
 photos.forEach((photo) => {
@@ -42,7 +42,7 @@ photos.forEach((photo) => {
     // MODAL CREATE
     const modal = document.createElement("div");
     modal.classList.add("portfolio__modal");
-    portfolioSection.prepend(modal);
+    document.body.prepend(modal);
 
     // OVERLAY CREATE AND DISPLAY
     const overlay = document.createElement("div");
@@ -78,7 +78,7 @@ photos.forEach((photo) => {
     // PRICE CREATE AND DISPLAY
     const price = document.createElement("p");
     price.classList.add("portfolio__price");
-    price.innerText = `${foundProduct.cost}`;
+    price.innerText = `${foundProduct.cost}$`;
     infoContainer.append(price);
 
     // TAGS CREATE AND DISPLAY
@@ -165,15 +165,21 @@ photos.forEach((photo) => {
   });
 });
 
-console.log("Add basket section");
-
-const basketSection = document.querySelector(".header__links--basket");
+// BASKET
+const basketButton = document.querySelector(".header__links--basket");
 
 // BASKET MODAL CREATE
-basketSection.addEventListener("click", (e) => {
+basketButton.addEventListener("click", (e) => {
   const basketModal = document.createElement("div");
   basketModal.classList.add("basket__modal");
-  basketSection.prepend(basketModal);
+  document.body.prepend(basketModal);
+
+  // OVERLAY CREATE AND DISPLAY
+  const overlay = document.createElement("div");
+  overlay.classList.add("overlay");
+  document.body.appendChild(overlay);
+  overlay.style.display = "block";
+  document.body.style.overflow = "hidden";
 
   let basket = JSON.parse(localStorage.getItem("boughtProducts"));
 
@@ -187,10 +193,14 @@ basketSection.addEventListener("click", (e) => {
     basketEmptyText.innerHTML = "EMPTY BASKET";
     basketEmptyContainer.prepend(basketEmptyText);
   } else {
+    const basketProductsContainer = document.createElement("div");
+    basketProductsContainer.classList.add("basket__products-container");
+    basketModal.prepend(basketProductsContainer);
+
     basket.forEach((element) => {
       const basketProductContainer = document.createElement("div");
-      basketProductContainer.classList.add("basket__items-container");
-      basketModal.prepend(basketProductContainer);
+      basketProductContainer.classList.add("basket__product-container");
+      basketProductsContainer.prepend(basketProductContainer);
 
       const basketImageContainer = document.createElement("div");
       basketImageContainer.classList.add("basket__image-container");
@@ -210,12 +220,24 @@ basketSection.addEventListener("click", (e) => {
       // PRICE CREATE AND DISPLAY
       const basketPrice = document.createElement("p");
       basketPrice.classList.add("basket__price");
-      basketPrice.innerText = `${element.cost}`;
+      basketPrice.innerText = `${element.cost}$`;
       basketImageContainer.append(basketPrice);
     });
+
+    const basketTotalCostContainer = document.createElement("div");
+    basketTotalCostContainer.classList.add("basket__total-cost-container");
+    basketModal.appendChild(basketTotalCostContainer);
+
+    const productsCost = basket.map((element) => element.cost);
+    const productsTotalCost = productsCost.reduce((acc, cur) => acc + cur, 0);
+
+    const basketTotalCostText = document.createElement("p");
+    basketTotalCostContainer.classList.add("basket__total-cost-text");
+    basketTotalCostText.innerHTML = `Total cost: ${productsTotalCost}$`;
+    basketTotalCostContainer.appendChild(basketTotalCostText);
   }
 
-  // PRICE CLOSE MODAL
+  // PRICE MODAL CLOSE BUTTON
   const basketButtonClose = document.createElement("button");
   basketButtonClose.innerHTML = "x";
   basketButtonClose.classList.add("price-modal__button-close");
@@ -227,11 +249,6 @@ basketSection.addEventListener("click", (e) => {
       basketCloseModal();
     }
   });
-
-  // OVERLAY CREATE
-  const overlay = document.createElement("div");
-  overlay.classList.add("overlay");
-  document.body.appendChild(overlay);
 
   function basketCloseModal() {
     basketModal.remove();
