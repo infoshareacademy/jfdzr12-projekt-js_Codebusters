@@ -292,6 +292,10 @@ body {
   flex-direction: row;
   border-radius: 20px;
   box-shadow: 0px 0px 36px -24px rgba(66, 68, 90, 1);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .portfolio__image-container {
@@ -415,6 +419,10 @@ body {
   flex-direction: column;
   border-radius: 20px;
   box-shadow: 0px 0px 36px -24px rgba(66, 68, 90, 1);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .basket__items-container {
