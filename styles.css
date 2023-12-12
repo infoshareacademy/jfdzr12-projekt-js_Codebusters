@@ -4,6 +4,7 @@
   --box-light-color: #d6d6d6;
   --box-dark-color: #aba9a9;
   --yellow-text-color: #f5deb3;
+  --dark-hover-color: #7c7979;
 }
 
 * {
@@ -18,7 +19,7 @@ body {
 .main__container {
   background: #fffbfb40;
   box-shadow: 0 8px 32px 0 var(--box-dark-color);
-  margin: 40px;
+  margin: 150px 40px 40px;
 }
 
 /* ------HEADER-------> */
@@ -49,6 +50,7 @@ body {
   justify-content: space-evenly;
   margin-right: 150px;
   margin-left: 150px;
+  font-weight: 500;
 }
 
 .header__link {
@@ -77,7 +79,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 700px;
-  margin: 150px 40px 20px;
+  margin: 150px 40px 60px;
   backdrop-filter: blur(7.5px);
   -webkit-backdrop-filter: blur(7.5px);
   border-radius: 10px;
@@ -92,14 +94,21 @@ body {
 }
 
 .info-left__text {
-  font-weight: 600;
-  font-size: 20px;
+  font-weight: 500;
+  font-size: 1.3rem;
   color: var(--main-text-color);
   justify-self: center;
   text-align: center;
   text-shadow: 0px 4px 40px var(--box-dark-color);
   margin-top: 100px;
   word-spacing: 5px;
+  text-align: justify;
+  line-height: 150%;
+}
+
+.info-left__text--span {
+  font-weight: 600;
+  font-style: italic;
 }
 
 .info-right {
@@ -107,6 +116,8 @@ body {
   width: 50%;
   position: relative;
   margin: 0 20px 50px 0;
+  display: flex;
+  justify-content: center;
 }
 
 .info-right__img {
@@ -119,6 +130,7 @@ body {
   opacity: 0.5;
   transition: 0.6s ease all;
 }
+
 .info-right__img:hover {
   transform: perspective(800px) rotateY(-15deg) translateY(-50px) rotateX(10deg)
     scale(1);
@@ -134,7 +146,7 @@ body {
 
 .portfolio__header {
   text-align: center;
-  font-weight: 900;
+  font-weight: 800;
   font-size: 2rem;
   color: var(--main-text-color);
   margin: 10px;
@@ -147,6 +159,7 @@ body {
   width: 100%;
   text-align: justify;
   padding: 0 70px;
+  line-height: 150%;
 }
 
 .portfolio_photos {
@@ -166,11 +179,12 @@ body {
   font-size: 1.2rem;
   text-align: justify;
   color: var(--main-text-color);
-  font-weight: 600;
+  font-weight: 500;
+  line-height: 120%;
 }
 
 .portfolio__items {
-  margin: 20px;
+  margin: 20px 20px 5px 20px;
   width: 25%;
 }
 
@@ -203,7 +217,8 @@ body {
   border: 4 solid var(--box-dark-color);
   line-height: 2.5;
   padding: 2px 20px;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
+  font-weight: 600;
   text-align: center;
   color: var(--yellow-text-color);
   text-shadow: 11px 5px 25px #42445a;
@@ -218,7 +233,7 @@ body {
   box-shadow: inset 2px 2px 3px #ffffff99, inset -2px -2px 3px #8f908480;
 }
 .portfolio__button:hover {
-  background-color: #11101080;
+  background-color: var(--dark-hover-color);
 }
 /* <-------PORTFOLIO--------- */
 
@@ -260,6 +275,16 @@ body {
   width: 240px;
   font-weight: bold;
   font-size: 1.8rem;
+  background-image: linear-gradient(
+    to top left,
+    #00000033,
+    #00000033 5%,
+    #00000000
+  );
+}
+
+.pricing__value:hover {
+  background-color: var(--dark-hover-color);
 }
 
 .pricing__value p {
