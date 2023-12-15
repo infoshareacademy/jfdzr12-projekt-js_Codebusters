@@ -3,14 +3,13 @@
   --dark-text-color: #3f3f35;
   --box-light-color: rgb(239, 218, 210);
   --box-dark-color: rgb(221, 183, 172);
-  --box-lighter-color:rgb(250, 235, 229);
+  --box-lighter-color: rgb(250, 235, 229);
   --yellow-text-color: #f5deb3;
   --dark-hover-color: #7c7979;
 }
 
 * {
   box-sizing: border-box;
-  
 }
 
 body {
@@ -36,8 +35,7 @@ body {
   display: flex;
   flex-direction: row;
   background-color: var(--box-dark-color);
-  border-bottom: 5px dotted rgba(63, 63, 54, 30%)
-  
+  border-bottom: 5px dotted rgba(63, 63, 54, 30%);
 }
 
 .header__image-container {
@@ -87,11 +85,6 @@ body {
   margin: 150px 40px 60px;
   backdrop-filter: blur(7.5px);
   -webkit-backdrop-filter: blur(7.5px);
-<<<<<<< HEAD
-  border-radius: 10px;
-  border: 1px solid #ffffff2e;
-=======
->>>>>>> main
 }
 
 .info-left {
@@ -102,7 +95,7 @@ body {
 }
 
 .info-left__text {
-  font-family: 'Dancing Script', cursive;
+  font-family: "Dancing Script", cursive;
   font-weight: 400;
   font-size: 30px;
   letter-spacing: 2px;
@@ -134,7 +127,8 @@ body {
 .info-right__img {
   height: 400px;
   background: var(--box-light-color);
-  box-shadow: 31px 31px 45px var(--box-dark-color), -31px -31px 45px var(--box-light-color);
+  box-shadow: 31px 31px 45px var(--box-dark-color),
+    -31px -31px 45px var(--box-light-color);
   border-radius: 5%;
   transform: perspective(800px) rotateY(25deg) scale(0.9) rotateX(10deg);
   filter: blur(2px);
@@ -235,7 +229,7 @@ body {
   color: var(--dark-text-color);
   text-shadow: 11px 5px 25px rgba(66, 68, 90, 1);
   border-radius: 15px;
-    background-image: linear-gradient(
+  background-image: linear-gradient(
     to top left,
     rgba(239, 218, 210, 0.2),
     rgba(239, 218, 210, 0.2) 30%,
@@ -307,7 +301,7 @@ body {
   font-size: 1.2rem;
   position: relative;
   top: 50px;
-  color: var(--dark-text-color)
+  color: var(--dark-text-color);
 }
 
 .pricing__description li {
@@ -326,7 +320,7 @@ body {
 .portfolio__modal {
   height: 470px;
   width: 700px;
-  background-color:  var(--box-light-color);
+  background-color: var(--box-light-color);
   position: absolute;
   z-index: 1;
   display: flex;
@@ -381,7 +375,7 @@ body {
 
 .portfolio__price {
   margin: 20px;
-  color:var(--dark-text-color);
+  color: var(--dark-text-color);
   text-align: left;
   font-style: normal;
   font-size: 1.5rem;
