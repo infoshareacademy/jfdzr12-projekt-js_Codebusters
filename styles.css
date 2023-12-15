@@ -40,6 +40,14 @@ body {
 
 .header__image-container {
   width: 30%;
+  margin: 5px 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.header__image {
+  height: 90%;
 }
 
 .header__links-container {
