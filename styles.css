@@ -1,10 +1,10 @@
 :root {
-  --main-text-color: #6e6f5c;
+  --main-text-color: #4e4242;
   --dark-text-color: #3f3f35;
-  --box-light-color: rgb(239, 218, 210);
-  --box-dark-color: rgb(221, 183, 172);
-  --box-lighter-color: rgb(250, 235, 229);
-  --yellow-text-color: #f5deb3;
+  --box-light-color: #ede7e6;
+  --box-dark-color: #d8c2bd;
+  --box-lighter-color: #e1d9d6;
+  --colored-text-color: #89645b;
   --dark-hover-color: #7c7979;
 }
 
@@ -20,7 +20,7 @@ body {
 
 .main__container {
   background: rgba(0, 0, 0, 0.25);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  box-shadow: 0 8px 32px 0 var(--box-dark-color);
   margin: 40px;
   background: var(--box-light-color);
 }
@@ -35,7 +35,7 @@ body {
   display: flex;
   flex-direction: row;
   background-color: var(--box-dark-color);
-  border-bottom: 5px dotted rgba(63, 63, 54, 30%);
+  border-bottom: 4px dotted rgba(63, 63, 54, 30%);
 }
 
 .header__image-container {
@@ -79,8 +79,9 @@ body {
 }
 
 .header__link:hover {
-  color: var(--yellow-text-color);
-  text-shadow: 0px 1px 4px #000000;
+  color: var(--colored-text-color);
+  text-shadow: 0px 1px 4px (--box-lighter-color);
+  font-weight: 600;
 }
 /* <------HEADER-------- */
 
@@ -111,7 +112,7 @@ body {
   color: var(--main-text-color);
   justify-self: center;
   text-align: center;
-  text-shadow: 0px 8px 22px var(--dark-text-color);
+  text-shadow: 8px 8px 27px var(--colored-text-color);
   margin-top: 70px;
   word-spacing: 5px;
   text-align: justify;
@@ -160,9 +161,10 @@ body {
 .portfolio__header {
   text-align: center;
   font-weight: 800;
-  font-size: 2rem;
+  font-size: 2.6rem;
   color: var(--main-text-color);
   margin: 10px;
+  font-family: "Dancing Script", cursive;
 }
 
 .portfolio__info {
@@ -173,13 +175,14 @@ body {
   text-align: justify;
   padding: 0 70px;
   line-height: 150%;
+  font-weight: 500;
 }
 
 .portfolio_photos {
   display: flex;
   justify-content: space-around;
   padding: 40px;
-  border: 4mm ridge #8f908480;
+  border: 4px dotted #3f3f364d;
   box-shadow: 0 8px 32px 0 var(--box-dark-color);
   border-radius: 5%;
   overflow: hidden;
@@ -204,7 +207,7 @@ body {
 .portfolio__photos {
   width: 90%;
   height: auto;
-  border: 4mm ridge #8f908480;
+  border: 2px solid #3f3f364d;
   border-radius: 10px 100px / 120px;
   transition: 1s all ease-in-out;
 }
@@ -226,27 +229,22 @@ body {
   padding: 20px;
 }
 
-.portfolio__button {
-  border: 4 solid var(--dark-text-color);
-  line-height: 2.5;
+.portfolio__button-more {
   padding: 2px 20px;
-  font-size: 1.3rem;
-  font-weight: 600;
-  text-align: center;
-  /* color: wheat; */
+
+  margin: 20px 20px;
+  align-self: flex-end;
+  padding: 20px 30px;
+  border-radius: 20px;
+  border: none;
+  font-size: 1rem;
   color: var(--dark-text-color);
-  text-shadow: 11px 5px 25px rgba(66, 68, 90, 1);
-  border-radius: 15px;
-  background-image: linear-gradient(
-    to top left,
-    rgba(239, 218, 210, 0.2),
-    rgba(239, 218, 210, 0.2) 30%,
-    rgba(221, 183, 172, 0)
-  );
-  box-shadow: inset 2px 2px 3px #ffffff99, inset -2px -2px 3px #8f908480;
+  background-color: var(--box-dark-color);
 }
-.portfolio__button:hover {
-  background-color: rgba(221, 183, 172, 0.5);
+
+.portfolio__button-more:hover {
+  color: var(--box-light-color);
+  background-color: var(--dark-hover-color);
 }
 /* <-------PORTFOLIO--------- */
 
@@ -276,9 +274,11 @@ body {
   text-align: center;
   position: relative;
   top: 30px;
+  font-size: 1rem;
+  text-transform: uppercase;
 }
 
-.pricing__value {
+.pricing__value-container {
   background-color: var(--box-lighter-color);
   border-radius: 20px;
   padding: 10px 20px;
@@ -288,28 +288,22 @@ body {
   width: 240px;
   font-weight: bold;
   font-size: 1.8rem;
-  background-image: linear-gradient(
-    to top left,
-    #00000033,
-    #00000033 5%,
-    #00000000
-  );
-}
-
-.pricing__value:hover {
-  background-color: var(--dark-hover-color);
-}
-
-.pricing__value p {
-  color: var(--yellow-text-color);
+  color: var(--colored-text-color);
   text-align: center;
+  font-family: "Dancing Script", cursive;
+  font-size: 2rem;
+}
+
+.pricing__value-container:hover {
+  background-color: var(--colored-text-color);
+  color: var(--box-light-color);
 }
 
 .pricing__description {
   font-size: 1.2rem;
   position: relative;
   top: 50px;
-  color: var(--dark-text-color);
+  color: var(--main-text-color);
 }
 
 .pricing__description li {
@@ -349,9 +343,9 @@ body {
 .portfolio__image {
   position: relative;
   width: 90%;
-  border: 2px solid #bbb9b9;
+  border: 2px solid #3f3f364d;
   margin: 100px 10px;
-  border-radius: 20px;
+  border-radius: 10px 100px / 120px;
 }
 
 .modal__button-close {
@@ -361,8 +355,16 @@ body {
   margin-right: 16px;
   height: 24px;
   width: 24px;
-  color: var(--main-text-color);
-  background-color: var(--box-light-color);
+  color: var(--dark-text-color);
+  background-color: var(--box-dark-color);
+  border: none;
+  color: var(--dark-text-color);
+}
+
+.modal__button-close:hover {
+  background-color: var(--main-text-color);
+  border: none;
+  color: var(--box-light-color);
 }
 
 .portfolio__info-container {
@@ -417,9 +419,15 @@ body {
   align-self: flex-end;
   padding: 20px 30px;
   border-radius: 20px;
+  border: none;
   font-size: 1rem;
   color: var(--dark-text-color);
   background-color: var(--box-dark-color);
+}
+
+.portfolio__button-buy:hover {
+  color: var(--box-light-color);
+  background-color: var(--dark-hover-color);
 }
 
 .portfolio__error-modal {
@@ -473,7 +481,6 @@ body {
   position: absolute;
   z-index: 2;
   border-radius: 20px;
-  border: var(--box-dark-color) 5px solid;
   box-shadow: 0px 0px 36px -24px var(--dark-text-color);
   position: fixed;
   top: 50%;
@@ -526,7 +533,15 @@ body {
   height: 24px;
   width: 24px;
   color: var(--dark-text-color);
-  background-color: var(--box-light-color);
+  background-color: var(--box-dark-color);
+  border: none;
+  color: var(--dark-text-color);
+}
+
+.price-modal__button-close:hover {
+  background-color: var(--main-text-color);
+  border: none;
+  color: var(--box-light-color);
 }
 
 .basket__empty-container {
