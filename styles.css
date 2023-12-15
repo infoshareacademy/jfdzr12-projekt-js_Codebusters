@@ -1,23 +1,15 @@
 :root {
-<<<<<<< HEAD
-  --main-text-color: #3c3c3c;
-  --dark-text-color: #323131;
-  --box-light-color: #d6d6d6;
-  --box-dark-color: #aba9a9;
-  --yellow-text-color: #f5deb3;
-  --dark-hover-color: #7c7979;
-=======
   --main-text-color: #6e6f5c;
   --dark-text-color: #3f3f35;
   --box-light-color: rgb(239, 218, 210);
   --box-dark-color: rgb(221, 183, 172);
-  --box-lighter-color:rgb(250, 235, 229);
->>>>>>> main
+  --box-lighter-color: rgb(250, 235, 229);
+  --yellow-text-color: #f5deb3;
+  --dark-hover-color: #7c7979;
 }
 
 * {
   box-sizing: border-box;
-  
 }
 
 body {
@@ -27,16 +19,10 @@ body {
 }
 
 .main__container {
-<<<<<<< HEAD
-  background: #fffbfb40;
-  box-shadow: 0 8px 32px 0 var(--box-dark-color);
-  margin: 150px 40px 40px;
-=======
   background: rgba(0, 0, 0, 0.25);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   margin: 40px;
   background: var(--box-light-color);
->>>>>>> main
 }
 
 /* ------HEADER-------> */
@@ -48,14 +34,8 @@ body {
   z-index: 1;
   display: flex;
   flex-direction: row;
-<<<<<<< HEAD
-  background-color: #ddd8d8;
-  border-bottom: 1px solid var(--box-dark-color);
-=======
   background-color: var(--box-dark-color);
-  border-bottom: 5px dotted rgba(63, 63, 54, 30%)
-  
->>>>>>> main
+  border-bottom: 5px dotted rgba(63, 63, 54, 30%);
 }
 
 .header__image-container {
@@ -105,11 +85,6 @@ body {
   margin: 150px 40px 60px;
   backdrop-filter: blur(7.5px);
   -webkit-backdrop-filter: blur(7.5px);
-<<<<<<< HEAD
-  border-radius: 10px;
-  border: 1px solid #ffffff2e;
-=======
->>>>>>> main
 }
 
 .info-left {
@@ -120,16 +95,7 @@ body {
 }
 
 .info-left__text {
-<<<<<<< HEAD
-  font-weight: 500;
-  font-size: 1.3rem;
-  color: var(--main-text-color);
-  justify-self: center;
-  text-align: center;
-  text-shadow: 0px 4px 40px var(--box-dark-color);
-  margin-top: 100px;
-=======
-  font-family: 'Dancing Script', cursive;
+  font-family: "Dancing Script", cursive;
   font-weight: 400;
   font-size: 30px;
   letter-spacing: 2px;
@@ -139,7 +105,6 @@ body {
   text-align: center;
   text-shadow: 0px 8px 22px var(--dark-text-color);
   margin-top: 70px;
->>>>>>> main
   word-spacing: 5px;
   text-align: justify;
   line-height: 150%;
@@ -162,7 +127,8 @@ body {
 .info-right__img {
   height: 400px;
   background: var(--box-light-color);
-  box-shadow: 31px 31px 45px var(--box-dark-color), -31px -31px 45px var(--box-light-color);
+  box-shadow: 31px 31px 45px var(--box-dark-color),
+    -31px -31px 45px var(--box-light-color);
   border-radius: 5%;
   transform: perspective(800px) rotateY(25deg) scale(0.9) rotateX(10deg);
   filter: blur(2px);
@@ -253,53 +219,26 @@ body {
 }
 
 .portfolio__button {
-<<<<<<< HEAD
-  border: 4 solid var(--box-dark-color);
-=======
   border: 4 solid var(--dark-text-color);
->>>>>>> main
   line-height: 2.5;
   padding: 2px 20px;
   font-size: 1.3rem;
   font-weight: 600;
   text-align: center;
-<<<<<<< HEAD
-  color: var(--yellow-text-color);
-  text-shadow: 11px 5px 25px #42445a;
-  border-radius: 15px;
-  background-color: #cccccc;
-  background-image: linear-gradient(
-    to top left,
-    #00000033,
-    #00000033 30%,
-    #00000000
-=======
   /* color: wheat; */
   color: var(--dark-text-color);
   text-shadow: 11px 5px 25px rgba(66, 68, 90, 1);
   border-radius: 15px;
-  /* background-color: rgb(204, 204, 204); */
-  /* background-image: linear-gradient(
-    to top left,
-    rgba(0, 0, 0, 0.2),
-    rgba(0, 0, 0, 0.2) 30%,
-    rgba(0, 0, 0, 0)
-  ); */
-    background-image: linear-gradient(
+  background-image: linear-gradient(
     to top left,
     rgba(239, 218, 210, 0.2),
     rgba(239, 218, 210, 0.2) 30%,
     rgba(221, 183, 172, 0)
->>>>>>> main
   );
   box-shadow: inset 2px 2px 3px #ffffff99, inset -2px -2px 3px #8f908480;
 }
 .portfolio__button:hover {
-<<<<<<< HEAD
-  background-color: var(--dark-hover-color);
-=======
   background-color: rgba(221, 183, 172, 0.5);
->>>>>>> main
 }
 /* <-------PORTFOLIO--------- */
 
@@ -362,7 +301,7 @@ body {
   font-size: 1.2rem;
   position: relative;
   top: 50px;
-  color: var(--dark-text-color)
+  color: var(--dark-text-color);
 }
 
 .pricing__description li {
@@ -381,7 +320,7 @@ body {
 .portfolio__modal {
   height: 470px;
   width: 700px;
-  background-color:  var(--box-light-color);
+  background-color: var(--box-light-color);
   position: absolute;
   z-index: 1;
   display: flex;
@@ -436,7 +375,7 @@ body {
 
 .portfolio__price {
   margin: 20px;
-  color:var(--dark-text-color);
+  color: var(--dark-text-color);
   text-align: left;
   font-style: normal;
   font-size: 1.5rem;
@@ -526,12 +465,8 @@ body {
   position: absolute;
   z-index: 2;
   border-radius: 20px;
-<<<<<<< HEAD
-  box-shadow: 0px 0px 36px -24px #42445a;
-=======
   border: var(--box-dark-color) 5px solid;
   box-shadow: 0px 0px 36px -24px var(--dark-text-color);
->>>>>>> main
   position: fixed;
   top: 50%;
   left: 50%;
