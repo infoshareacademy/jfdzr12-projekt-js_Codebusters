@@ -190,7 +190,7 @@ basketButton.addEventListener("click", (e) => {
 
     const basketEmptyText = document.createElement("p");
     basketEmptyText.classList.add("basket__empty-text");
-    basketEmptyText.innerHTML = "EMPTY BASKET";
+    basketEmptyText.innerHTML = "Your basket is empty";
     basketEmptyContainer.prepend(basketEmptyText);
   } else {
     const basketProductsContainer = document.createElement("div");
