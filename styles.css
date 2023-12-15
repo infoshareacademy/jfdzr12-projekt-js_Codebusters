@@ -12,6 +12,15 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 body {
   font-family: Roboto, Georgia, "Times New Roman", Times, serif;
   margin: 0;
@@ -89,7 +98,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 700px;
-  margin: 150px 40px 60px;
+  margin: 150px 40px 0px;
 }
 
 .info-left {
@@ -124,7 +133,7 @@ body {
   height: 300px;
   width: 50%;
   position: relative;
-  margin: 0 20px 50px 0;
+  margin: 0 20px 50px 0px;
   display: flex;
   justify-content: center;
 }
@@ -151,6 +160,7 @@ body {
 
 /* -------PORTFOLIO---------> */
 .portfolio__container {
+  padding-top: 100px;
   margin-bottom: 100px;
 }
 
