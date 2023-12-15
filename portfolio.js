@@ -34,7 +34,7 @@ const products = [
 ];
 
 // PORTFOLIO
-const photos = document.querySelectorAll(".portfolio__photos");
+const photos = document.querySelectorAll(".portfolio__photo");
 const portfolioSection = document.querySelector(".portfolio__items");
 
 photos.forEach((photo) => {
