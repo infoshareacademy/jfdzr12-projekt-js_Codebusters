@@ -38,7 +38,7 @@ body {
 /* ------HEADER-------> */
 .header__container {
   position: fixed;
-  height: 100px;
+  height: 85px;
   width: 100%;
   top: 0;
   z-index: 1;
@@ -128,6 +128,8 @@ body {
 .info-left__text--span {
   font-weight: bold;
   font-size: 30px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .info-right {
@@ -208,16 +210,17 @@ body {
 
 .portfolio__paragraph {
   font-style: normal;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   text-align: justify;
   color: var(--main-text-color);
   font-weight: 500;
   line-height: 120%;
+  
 }
 
 .portfolio__photo {
-  width: 90%;
-  height: auto;
+  width: 250px;
+  height: 150px;
   border: 2px solid var(--borders-color);
   border-radius: 10px 100px / 120px;
   transition: 0.4s all ease-in-out;
@@ -244,7 +247,6 @@ body {
 
 .portfolio__button-more {
   padding: 2px 20px;
-
   margin: 20px 20px;
   align-self: flex-end;
   padding: 20px 30px;
