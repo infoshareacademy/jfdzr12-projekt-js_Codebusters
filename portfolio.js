@@ -235,6 +235,16 @@ basketButton.addEventListener("click", (e) => {
     basketTotalCostText.classList.add("basket__total-cost-text");
     basketTotalCostText.innerHTML = `Total cost: ${productsTotalCost}$`;
     basketTotalCostContainer.appendChild(basketTotalCostText);
+
+    const basketBuyButton = document.createElement("button");
+    basketBuyButton.classList.add("basket__buy-button");
+    basketBuyButton.innerHTML = "Buy";
+    basketTotalCostContainer.appendChild(basketBuyButton);
+
+    basketBuyButton.addEventListener("click", (e) => {
+      localStorage.clear();
+      basketCloseModal();
+    });
   }
 
   // PRICE MODAL CLOSE BUTTON
