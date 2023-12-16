@@ -203,9 +203,7 @@ body {
   margin: 20px 20px 5px 20px;
   width: 25%;
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  justify-content: space-between;
 }
 
 .portfolio__paragraph {
@@ -215,7 +213,6 @@ body {
   color: var(--main-text-color);
   font-weight: 500;
   line-height: 120%;
-  
 }
 
 .portfolio__photo {
@@ -270,6 +267,22 @@ body {
   align-items: center;
   justify-content: center;
   padding-bottom: 200px;
+  flex-direction: column;
+}
+
+.pricing__header {
+  text-align: center;
+  font-weight: 800;
+  font-size: 2.6rem;
+  color: var(--main-text-color);
+  margin: 10px;
+  font-family: "Dancing Script", cursive;
+}
+
+.pricing__content-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .pricing__content {
