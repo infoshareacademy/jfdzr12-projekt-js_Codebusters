@@ -215,13 +215,13 @@ basketButton.addEventListener("click", (e) => {
       const basketTitle = document.createElement("p");
       basketTitle.classList.add("basket__title");
       basketTitle.innerText = `${element.title}`;
-      basketImageContainer.append(basketTitle);
+      basketProductContainer.append(basketTitle);
 
       // PRICE CREATE AND DISPLAY
       const basketPrice = document.createElement("p");
       basketPrice.classList.add("basket__price");
       basketPrice.innerText = `${element.cost}$`;
-      basketImageContainer.append(basketPrice);
+      basketProductContainer.append(basketPrice);
     });
 
     const basketTotalCostContainer = document.createElement("div");
@@ -232,7 +232,7 @@ basketButton.addEventListener("click", (e) => {
     const productsTotalCost = productsCost.reduce((acc, cur) => acc + cur, 0);
 
     const basketTotalCostText = document.createElement("p");
-    basketTotalCostContainer.classList.add("basket__total-cost-text");
+    basketTotalCostText.classList.add("basket__total-cost-text");
     basketTotalCostText.innerHTML = `Total cost: ${productsTotalCost}$`;
     basketTotalCostContainer.appendChild(basketTotalCostText);
   }
