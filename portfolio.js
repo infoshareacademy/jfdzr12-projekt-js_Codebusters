@@ -1,3 +1,5 @@
+import { fetchImages } from "./api/getImages.js";
+
 const products = [
   {
     id: "0",
@@ -32,6 +34,18 @@ const products = [
     cost: 100,
   },
 ];
+
+// fetchImages();
+
+console.log("FETCH!");
+console.log(fetchImages);
+
+const portfolioPhotos = document.querySelectorAll(".portfolio__photo");
+console.log("IMAGE ELEMENTS", portfolioPhotos);
+portfolioPhotos.forEach((el) => {
+  el.src =
+    "https://fastly.picsum.photos/id/13/2500/1667.jpg?hmac=SoX9UoHhN8HyklRA4A3vcCWJMVtiBXUg0W4ljWTor7s";
+});
 
 // PORTFOLIO
 const photos = document.querySelectorAll(".portfolio__photo");
