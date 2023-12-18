@@ -220,7 +220,7 @@ body {
   width: 250px;
   height: 150px;
   border: 2px solid var(--borders-color);
-  border-radius: 20px;
+  border-radius: 10px 100px / 120px;
   transition: 0.4s all ease-in-out;
 }
 
