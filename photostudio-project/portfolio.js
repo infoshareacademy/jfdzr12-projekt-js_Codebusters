@@ -1,4 +1,4 @@
-import { fetchImages } from "./api/fetchImages.js";
+import { fetchData } from "./api/fetchData.js";
 
 const products = [
   {
