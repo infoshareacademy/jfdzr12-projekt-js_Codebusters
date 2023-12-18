@@ -47,6 +47,7 @@ dataJSON().then((elements) => {
     const portfolioImage = document.createElement("img");
     portfolioImage.classList.add("portfolio__photo");
     portfolioImage.src = `${element.url}`;
+    portfolioImage.setAttribute("data-id", `${element.id}`);
     portfolioItemContainer.prepend(portfolioImage);
   });
 
@@ -74,12 +75,11 @@ dataJSON().then((elements) => {
       const image = document.createElement("img");
       image.classList.add("portfolio__image");
 
-      const foundProduct = elements.find((element) => element.url == photo.src);
+      const foundProduct = elements.find(
+        (element) => element.id == photo.getAttribute("data-id")
+      );
 
-      console.log(foundProduct);
-
-      console.log(e.target);
-      image.src = `${e.target.src}`;
+      image.src = `${foundProduct.url}`;
       imageContainer.prepend(image);
 
       // INFO CONTAINER CREATE AND DISPLAY
