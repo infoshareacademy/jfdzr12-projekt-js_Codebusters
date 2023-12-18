@@ -1,176 +1,169 @@
-import { fetchData } from "./api/fetchData.js";
+import { dataJSON } from "./api/fetchData.js";
 
-const products = [
-  {
-    id: "0",
-    image: "examples_photos/family.jpg",
-    title: "Family photo shoot",
-    tags: ["family", "love"],
-    location: "studio",
-    cost: 10,
-  },
-  {
-    id: "1",
-    image: "examples_photos/newborn.jpg",
-    title: "Newborn photo shoot",
-    tags: ["newborn", "baby"],
-    location: "home, studio",
-    cost: 15,
-  },
-  {
-    id: "2",
-    image: "examples_photos/wedding.jpg",
-    title: "Wedding photo shoot",
-    tags: ["wedding", "love"],
-    location: "outdoors, studio",
-    cost: 10,
-  },
-  {
-    id: "3",
-    image: "examples_photos/air.jpg",
-    title: "Air2Air sessions",
-    tags: ["air2air", "nature"],
-    location: "outdoors, air",
-    cost: 100,
-  },
-];
+// const products = [
+//   {
+//     id: "0",
+//     image: "examples_photos/family.jpg",
+//     title: "Family photo shoot",
+//     tags: ["family", "love"],
+//     location: "studio",
+//     cost: 10,
+//   },
+//   {
+//     id: "1",
+//     image: "examples_photos/newborn.jpg",
+//     title: "Newborn photo shoot",
+//     tags: ["newborn", "baby"],
+//     location: "home, studio",
+//     cost: 15,
+//   },
+//   {
+//     id: "2",
+//     image: "examples_photos/wedding.jpg",
+//     title: "Wedding photo shoot",
+//     tags: ["wedding", "love"],
+//     location: "outdoors, studio",
+//     cost: 10,
+//   },
+//   {
+//     id: "3",
+//     image: "examples_photos/air.jpg",
+//     title: "Air2Air sessions",
+//     tags: ["air2air", "nature"],
+//     location: "outdoors, air",
+//     cost: 100,
+//   },
+// ];
 
-const portfolioPhotos = document.querySelectorAll(".portfolio__photo");
-console.log("IMAGE ELEMENTS", portfolioPhotos);
-portfolioPhotos.forEach((el) => {
-  el.src =
-    "https://fastly.picsum.photos/id/13/2500/1667.jpg?hmac=SoX9UoHhN8HyklRA4A3vcCWJMVtiBXUg0W4ljWTor7s";
-});
+const allPhotosContainer = document.querySelector(".portfolio__photos");
 
-// PORTFOLIO
-const photos = document.querySelectorAll(".portfolio__photo");
-const portfolioSection = document.querySelector(".portfolio__items");
+//PORTFOLIO
+dataJSON().then((elements) => {
+  elements.forEach((element) => {
+    const portfolioItemContainer = document.createElement("div");
+    portfolioItemContainer.classList.add("portfolio__items");
+    allPhotosContainer.prepend(portfolioItemContainer);
 
-photos.forEach((photo) => {
-  photo.addEventListener("click", (e) => {
-    // MODAL CREATE
-    const modal = document.createElement("div");
-    modal.classList.add("portfolio__modal");
-    document.body.prepend(modal);
+    const portfolioImage = document.createElement("img");
+    portfolioImage.classList.add("portfolio__photo");
+    portfolioImage.src = `${element.url}`;
+    portfolioItemContainer.prepend(portfolioImage);
+  });
 
-    // OVERLAY CREATE AND DISPLAY
-    const overlay = document.createElement("div");
-    overlay.classList.add("overlay");
-    document.body.appendChild(overlay);
-    overlay.style.display = "block";
-    document.body.style.overflow = "hidden";
+  const photos = document.querySelectorAll(".portfolio__photo");
 
-    // IMAGE CREATE AND DISPLAY
-    const imageContainer = document.createElement("div");
-    imageContainer.classList.add("portfolio__image-container");
-    modal.prepend(imageContainer);
+  photos.forEach((photo) => {
+    photo.addEventListener("click", (e) => {
+      // MODAL CREATE
+      const modal = document.createElement("div");
+      modal.classList.add("portfolio__modal");
+      document.body.prepend(modal);
 
-    const image = document.createElement("img");
-    image.classList.add("portfolio__image");
-    const foundProduct = products.find(
-      (element) => element.id == photo.attributes["data-id"].value
-    );
-    image.src = `${foundProduct.image}`;
-    imageContainer.prepend(image);
+      // OVERLAY CREATE AND DISPLAY
+      const overlay = document.createElement("div");
+      overlay.classList.add("overlay");
+      document.body.appendChild(overlay);
+      overlay.style.display = "block";
+      document.body.style.overflow = "hidden";
 
-    // INFO CONTAINER CREATE AND DISPLAY
-    const infoContainer = document.createElement("div");
-    infoContainer.classList.add("portfolio__info-container");
-    modal.append(infoContainer);
+      // PORTFOLIO MODAL - IMAGE CREATE AND DISPLAY
+      const imageContainer = document.createElement("div");
+      imageContainer.classList.add("portfolio__image-container");
+      modal.prepend(imageContainer);
 
-    // TITLE CREATE AND DISPLAY
-    const title = document.createElement("h2");
-    title.classList.add("portfolio__title");
-    title.innerText = `${foundProduct.title}`;
-    infoContainer.prepend(title);
+      const image = document.createElement("img");
+      image.classList.add("portfolio__image");
 
-    // PRICE CREATE AND DISPLAY
-    const price = document.createElement("p");
-    price.classList.add("portfolio__price");
-    price.innerText = `${foundProduct.cost}$`;
-    infoContainer.append(price);
+      const foundProduct = elements.find((element) => element.url == photo.src);
 
-    // TAGS CREATE AND DISPLAY
-    const tagsContainer = document.createElement("div");
-    tagsContainer.classList.add("portfolio__tags-container");
+      console.log(foundProduct);
 
-    foundProduct.tags.forEach((tag) => {
-      const tagDiv = document.createElement("div");
-      tagDiv.classList.add("portfolio__tag");
-      tagDiv.innerText = tag;
-      tagsContainer.prepend(tagDiv);
-      infoContainer.append(tagsContainer);
-    });
+      console.log(e.target);
+      image.src = `${e.target.src}`;
+      imageContainer.prepend(image);
 
-    // LOCATION CREATE AND DISPLAY
-    const locationText = document.createElement("p");
-    locationText.classList.add("portfolio__location-text");
-    locationText.innerText = `Location: ${foundProduct.location}`;
-    infoContainer.append(locationText);
+      // INFO CONTAINER CREATE AND DISPLAY
+      const infoContainer = document.createElement("div");
+      infoContainer.classList.add("portfolio__info-container");
+      modal.append(infoContainer);
 
-    // BUTTON BUY CREATE AND DISPLAY
-    const buttonBuy = document.createElement("button");
-    buttonBuy.classList.add("portfolio__button-buy");
-    buttonBuy.innerHTML = "Add to basket";
-    infoContainer.append(buttonBuy);
+      // AUTHOR CREATE AND DISPLAY
+      const title = document.createElement("h2");
+      title.classList.add("portfolio__title");
+      title.innerText = `${foundProduct.author}`;
+      infoContainer.prepend(title);
 
-    buttonBuy.addEventListener("click", addToLocalStorage);
+      // PRICE CREATE AND DISPLAY
+      const price = document.createElement("p");
+      price.classList.add("portfolio__price");
+      price.innerText = `${foundProduct.price}$`;
+      infoContainer.append(price);
+      /*
+      // TAGS CREATE AND DISPLAY
+      const tagsContainer = document.createElement("div");
+      tagsContainer.classList.add("portfolio__tags-container");
 
-    //ADD TO LOCAL STORAGE
-    function addToLocalStorage() {
-      let basket = JSON.parse(localStorage.getItem("boughtProducts"));
+      foundProduct.tags.forEach((tag) => {
+        const tagDiv = document.createElement("div");
+        tagDiv.classList.add("portfolio__tag");
+        tagDiv.innerText = tag;
+        tagsContainer.prepend(tagDiv);
+        infoContainer.append(tagsContainer);
+      });
 
-      if (!basket) {
-        basket = [];
+      // LOCATION CREATE AND DISPLAY
+      const locationText = document.createElement("p");
+      locationText.classList.add("portfolio__location-text");
+      locationText.innerText = `Location: ${foundProduct.location}`;
+      infoContainer.append(locationText);
+*/
+
+      // IMAGE SIZES CREATE AND DISPLAY
+      const locationText = document.createElement("p");
+      locationText.classList.add("portfolio-modal__size-text");
+      locationText.innerText = `Size: ${foundProduct.height} x ${foundProduct.width} px`;
+      infoContainer.append(locationText);
+
+      // BUTTON BUY CREATE AND DISPLAY
+      const buttonBuy = document.createElement("button");
+      buttonBuy.classList.add("portfolio__button-buy");
+      buttonBuy.innerHTML = "Add to basket";
+      infoContainer.append(buttonBuy);
+
+      buttonBuy.addEventListener("click", addToLocalStorage);
+
+      //ADD TO LOCAL STORAGE
+      function addToLocalStorage() {
+        let basket = JSON.parse(localStorage.getItem("boughtProducts"));
+
+        if (!basket) {
+          basket = [];
+        }
+
+        basket.push(foundProduct);
+        localStorage.setItem("boughtProducts", JSON.stringify(basket));
       }
 
-      basket.push(foundProduct);
-      localStorage.setItem("boughtProducts", JSON.stringify(basket));
-    }
+      // CLOSE MODAL
+      const buttonClose = document.createElement("button");
+      buttonClose.innerHTML = "x";
+      buttonClose.classList.add("modal__button-close");
+      modal.append(buttonClose);
 
-    // CLOSE MODAL
-    const buttonClose = document.createElement("button");
-    buttonClose.innerHTML = "x";
-    buttonClose.classList.add("modal__button-close");
-    modal.append(buttonClose);
-
-    buttonClose.addEventListener("click", closeModal);
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        closeModal();
-      }
-    });
-
-    function closeModal() {
-      modal.remove();
-      // OVERLAY NONE
-      overlay.style.display = "none";
-      document.body.style.overflow = "auto";
-    }
-
-    function errorModal() {
-      const errorModal = document.createElement("div");
-      errorModal.classList.add("portfolio__error-modal");
-      const errorText = document.createElement("p");
-      errorText.classList.add("portfolio__error-text");
-      errorText.innerText =
-        "Could not proceed your order. Please try again later";
-      errorModal.prepend(errorText);
-      portfolioSection.prepend(errorModal);
-
-      errorModal.append(buttonClose);
-
-      buttonClose.addEventListener("click", closeErrorModal);
+      buttonClose.addEventListener("click", closeModal);
       window.addEventListener("keydown", (e) => {
         if (e.key === "Escape") {
-          closeErrorModal();
+          closeModal();
         }
       });
 
-      function closeErrorModal() {
-        errorModal.remove();
+      function closeModal() {
+        modal.remove();
+        // OVERLAY NONE
+        overlay.style.display = "none";
+        document.body.style.overflow = "auto";
       }
-    }
+    });
   });
 });
 
@@ -217,19 +210,19 @@ basketButton.addEventListener("click", (e) => {
 
       const basketImage = document.createElement("img");
       basketImage.classList.add("basket__image");
-      basketImage.src = `${element.image}`;
+      basketImage.src = `${element.url}`;
       basketImageContainer.prepend(basketImage);
 
       // TITLE CREATE AND DISPLAY
       const basketTitle = document.createElement("p");
       basketTitle.classList.add("basket__title");
-      basketTitle.innerText = `${element.title}`;
+      basketTitle.innerText = `${element.author}`;
       basketProductContainer.append(basketTitle);
 
       // PRICE CREATE AND DISPLAY
       const basketPrice = document.createElement("p");
       basketPrice.classList.add("basket__price");
-      basketPrice.innerText = `${element.cost}$`;
+      basketPrice.innerText = `${element.price}$`;
       basketProductContainer.append(basketPrice);
     });
 
@@ -237,7 +230,7 @@ basketButton.addEventListener("click", (e) => {
     basketTotalCostContainer.classList.add("basket__total-cost-container");
     basketModal.appendChild(basketTotalCostContainer);
 
-    const productsCost = basket.map((element) => element.cost);
+    const productsCost = basket.map((element) => element.price);
     const productsTotalCost = productsCost.reduce((acc, cur) => acc + cur, 0);
 
     const basketTotalCostText = document.createElement("p");

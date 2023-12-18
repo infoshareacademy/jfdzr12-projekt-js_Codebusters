@@ -189,19 +189,20 @@ body {
 
 .portfolio__photos {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   padding: 40px;
   border: 2.5px dotted var(--borders-color);
   box-shadow: 0 8px 32px 0 var(--box-dark-color);
   border-radius: 20px;
-  overflow: hidden;
   font-style: oblique;
   margin: 10px 40px;
 }
 
 .portfolio__items {
   margin: 20px 20px 5px 20px;
-  width: 25%;
+  width: 20%;
   display: flex;
   flex-direction: column;
 }
@@ -379,6 +380,14 @@ body {
   border-radius: 10px 100px / 120px;
 }
 
+.portfolio-modal__size-text {
+  margin: 20px;
+  color: var(--dark-text-color);
+  text-align: left;
+  font-style: normal;
+  font-size: 1.2rem;
+}
+
 .modal__button-close {
   position: absolute;
   top: 20px;
@@ -405,6 +414,7 @@ body {
   margin: 20px 20px 20px 0px;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
 }
 
 .portfolio__title {
