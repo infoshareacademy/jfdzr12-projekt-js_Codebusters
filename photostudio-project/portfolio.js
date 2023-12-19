@@ -1,4 +1,4 @@
-import { dataJSON } from "./api/fetchData.js";
+import { getPhotosData } from "./api/getData.js";
 
 // const products = [
 //   {
@@ -38,7 +38,7 @@ import { dataJSON } from "./api/fetchData.js";
 const allPhotosContainer = document.querySelector(".portfolio__photos");
 
 //PORTFOLIO
-dataJSON().then((elements) => {
+getPhotosData().then((elements) => {
   elements.forEach((element) => {
     const portfolioItemContainer = document.createElement("div");
     portfolioItemContainer.classList.add("portfolio__items");
