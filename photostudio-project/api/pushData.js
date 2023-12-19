@@ -1,4 +1,4 @@
-const addOrdersData = (data) => {
+export const addOrdersData = (data) => {
   fetch("http://localhost:3000/orders", {
     method: "POST",
     headers: {

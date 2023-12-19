@@ -1,4 +1,5 @@
 import { getPhotosData } from "./api/getData.js";
+import { addOrdersData } from "./api/pushData.js";
 
 // const products = [
 //   {
