@@ -36,6 +36,14 @@ import { addOrdersData } from "./api/pushData.js";
 //   },
 // ];
 
+function overlayDisplay() {
+  const overlay = document.createElement("div");
+  overlay.classList.add("overlay");
+  document.body.appendChild(overlay);
+  overlay.style.display = "block";
+  document.body.style.overflow = "hidden";
+}
+
 const allPhotosContainer = document.querySelector(".portfolio__photos");
 
 //PORTFOLIO
@@ -269,4 +277,74 @@ basketButton.addEventListener("click", (e) => {
     overlay.style.display = "none";
     document.body.style.overflow = "auto";
   }
+});
+
+//DISCOUNT MODAL
+
+window.addEventListener("mouseout", function (event) {
+  if (
+    sessionStorage.getItem("discountModalShown") ||
+    event.toElement ||
+    event.relatedTarget ||
+    document.getElementById("discount__modal")
+  ) {
+    return;
+  }
+
+  const discountModal = document.createElement("div");
+  discountModal.id = "discount__modal";
+  document.body.prepend(discountModal);
+
+  // OVERLAY CREATE AND DISPLAY
+  const overlay = document.createElement("div");
+  overlay.classList.add("overlay");
+  document.body.appendChild(overlay);
+  overlay.style.display = "block";
+  document.body.style.overflow = "hidden";
+
+  // TITLE CREATE AND DISPLAY
+  const discountTitle = document.createElement("h3");
+  discountTitle.classList.add("discount__title");
+  discountTitle.innerText = `SUPER PROPOSITION!`;
+  discountModal.append(discountTitle);
+
+  // PRICE MODAL CLOSE BUTTON
+  const discountButtonClose = document.createElement("button");
+  discountButtonClose.innerHTML = "x";
+  discountButtonClose.classList.add("discount-modal__button-close");
+  discountModal.append(discountButtonClose);
+
+  discountButtonClose.addEventListener("click", discountCloseModal);
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      discountCloseModal();
+    }
+  });
+
+  function discountCloseModal() {
+    discountModal.remove();
+    // OVERLAY NONE
+    overlay.style.display = "none";
+    document.body.style.overflow = "auto";
+  }
+
+  let countdownTime = 60;
+
+  function startDiscountTimer() {
+    let discountTimer = setInterval(function () {
+      countdownTime--;
+      const minutes = Math.floor(countdownTime / 60);
+      const seconds = countdownTime % 60;
+      discountTitle.innerText = `Limited time offer! Order now and get 10% discount. ${minutes}:${
+        seconds < 10 ? "0" : ""
+      }${seconds} Hurry up!`;
+
+      if (countdownTime <= 0) {
+        discountCloseModal();
+      }
+    }, 1000);
+  }
+  startDiscountTimer();
+
+  sessionStorage.setItem("discountModalShown", "true");
 });
