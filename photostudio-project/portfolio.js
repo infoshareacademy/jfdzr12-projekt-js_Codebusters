@@ -44,6 +44,11 @@ function overlayDisplay() {
   document.body.style.overflow = "hidden";
 }
 
+function overlayNone() {
+  const overlay = document.querySelector(".overlay");
+  overlay.remove();
+}
+
 const allPhotosContainer = document.querySelector(".portfolio__photos");
 
 //PORTFOLIO
@@ -168,9 +173,7 @@ getPhotosData().then((elements) => {
 
       function closeModal() {
         modal.remove();
-        // OVERLAY NONE
-        overlay.style.display = "none";
-        document.body.style.overflow = "auto";
+        overlayNone();
       }
     });
   });
@@ -273,9 +276,7 @@ basketButton.addEventListener("click", (e) => {
 
   function basketCloseModal() {
     basketModal.remove();
-    // OVERLAY NONE
-    overlay.style.display = "none";
-    document.body.style.overflow = "auto";
+    overlayNone();
   }
 });
 
@@ -323,9 +324,7 @@ window.addEventListener("mouseout", function (event) {
 
   function discountCloseModal() {
     discountModal.remove();
-    // OVERLAY NONE
-    overlay.style.display = "none";
-    document.body.style.overflow = "auto";
+    overlayNone();
   }
 
   let countdownTime = 60;
