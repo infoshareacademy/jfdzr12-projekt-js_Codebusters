@@ -7,6 +7,7 @@
   --colored-text-color: #89645b;
   --dark-hover-color: #7c7979;
   --borders-color: #3f3f364d;
+  --red-color: #ec7171;
 }
 
 * {
@@ -653,4 +654,55 @@ body {
 
 .basket__buy-button:active {
   background: var(--box-lighter-color);
+}
+
+#discount__modal {
+  min-height: 300px;
+  width: 500px;
+  background-color: var(--red-color);
+  position: absolute;
+  z-index: 4;
+  border-radius: 20px;
+  box-shadow: 0px 0px 36px -24px var(--dark-text-color);
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--box-light-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.discount-modal__button-close {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  margin-right: 16px;
+  height: 24px;
+  width: 24px;
+  background-color: var(--box-lighter-color);
+  border: none;
+  color: var(--red-color);
+  transition: 0.4s;
+}
+
+.discount-modal__button-close:hover {
+  color: var(--red-color);
+  background-color: var(--box-dark-color);
+}
+
+.discount__content {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.discount__title {
+  margin: 20px;
+  color: var(--box-lighter-color);
+  text-align: left;
+  font-style: normal;
+  font-size: 1.8rem;
 }
