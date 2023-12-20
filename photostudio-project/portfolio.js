@@ -46,7 +46,10 @@ function overlayDisplay() {
 
 function overlayNone() {
   const overlay = document.querySelector(".overlay");
-  overlay.remove();
+  if (overlay) {
+    overlay.remove();
+  }
+  document.body.style.overflow = "auto";
 }
 
 const allPhotosContainer = document.querySelector(".portfolio__photos");
@@ -74,12 +77,7 @@ getPhotosData().then((elements) => {
       modal.classList.add("portfolio__modal");
       document.body.prepend(modal);
 
-      // OVERLAY CREATE AND DISPLAY
-      const overlay = document.createElement("div");
-      overlay.classList.add("overlay");
-      document.body.appendChild(overlay);
-      overlay.style.display = "block";
-      document.body.style.overflow = "hidden";
+      overlayDisplay();
 
       // PORTFOLIO MODAL - IMAGE CREATE AND DISPLAY
       const imageContainer = document.createElement("div");
@@ -188,12 +186,7 @@ basketButton.addEventListener("click", (e) => {
   basketModal.classList.add("basket__modal");
   document.body.prepend(basketModal);
 
-  // OVERLAY CREATE AND DISPLAY
-  const overlay = document.createElement("div");
-  overlay.classList.add("overlay");
-  document.body.appendChild(overlay);
-  overlay.style.display = "block";
-  document.body.style.overflow = "hidden";
+  overlayDisplay();
 
   let basket = JSON.parse(localStorage.getItem("boughtProducts"));
 
@@ -281,7 +274,6 @@ basketButton.addEventListener("click", (e) => {
 });
 
 //DISCOUNT MODAL
-
 window.addEventListener("mouseout", function (event) {
   if (
     sessionStorage.getItem("discountModalShown") ||
@@ -296,12 +288,7 @@ window.addEventListener("mouseout", function (event) {
   discountModal.id = "discount__modal";
   document.body.prepend(discountModal);
 
-  // OVERLAY CREATE AND DISPLAY
-  const overlay = document.createElement("div");
-  overlay.classList.add("overlay");
-  document.body.appendChild(overlay);
-  overlay.style.display = "block";
-  document.body.style.overflow = "hidden";
+  overlayDisplay();
 
   // TITLE CREATE AND DISPLAY
   const discountTitle = document.createElement("h3");
