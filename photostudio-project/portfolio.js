@@ -324,7 +324,6 @@ function showDiscountModal() {
         discountTitle.innerText = `Limited time offer! Order now and get 10% discount. ${minutes}:${
           seconds < 10 ? "0" : ""
         }${seconds} Hurry up!`;
-
         if (countdownTime <= 0) {
           discountCloseModal();
         }
@@ -334,6 +333,21 @@ function showDiscountModal() {
 
     sessionStorage.setItem("discountModalShown", "true");
   });
+}
+
+function applyDiscountToBasket() {
+  let basket = JSON.parse(localStorage.getItem("boughtProducts"));
+
+  if (basket) {
+    const discountPercentage = 10; // Przykładowy procent rabatu
+    const discountFactor = 1 - discountPercentage / 100;
+
+    basket.forEach((element) => {
+      element.price *= discountFactor;
+    });
+
+    localStorage.setItem("boughtProducts", JSON.stringify(basket));
+  }
 }
 
 showPortfolioPhotos();
