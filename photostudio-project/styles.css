@@ -95,12 +95,29 @@ body {
 /* <------HEADER-------- */
 
 /* ------MAIN INFO-------> */
-.container-info {
+/* .container-info {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 600px;
   margin: 150px 40px 0px;
+} */
+
+.info__content-container {
+  display: flex;
+  justify-content: center;
+  height: 500px;
+  margin-top: 10px;
+}
+
+.info_header {
+  text-align: center;
+  font-weight: 800;
+  font-size: 2.6rem;
+  color: var(--main-text-color);
+  margin-top: 120px;
+  font-family: "Dancing Script", cursive;
+  padding: 40px;
 }
 
 .info-left {
@@ -120,7 +137,7 @@ body {
   justify-self: center;
   text-align: center;
   text-shadow: 8px 8px 44px var(--colored-text-color);
-  margin-top: 70px;
+  margin: 20px 0px 20px 40px;
   word-spacing: 5px;
   text-align: justify;
   line-height: 150%;
@@ -131,6 +148,16 @@ body {
   font-size: 30px;
   display: flex;
   justify-content: flex-end;
+}
+
+.info-left__sub-header {
+  font-size: 1.3rem;
+  color: var(--main-text-color);
+  margin: 60px 0px 20px 40px;
+  width: 100%;
+  text-align: justify;
+  line-height: 150%;
+  font-weight: 500;
 }
 
 .info-right {
@@ -164,11 +191,11 @@ body {
 
 /* -------PORTFOLIO---------> */
 .portfolio__container {
-  padding-top: 100px;
   margin-bottom: 100px;
 }
 
 .portfolio__header {
+  padding-top: 90px;
   text-align: center;
   font-weight: 800;
   font-size: 2.6rem;
@@ -629,7 +656,7 @@ body {
 }
 
 #discount__modal {
-  min-height: 300px;
+  min-height: 350px;
   width: 500px;
   background-color: var(--red-color);
   position: absolute;
@@ -664,17 +691,29 @@ body {
   background-color: var(--box-dark-color);
 }
 
-.discount__content {
-  justify-content: center;
-  align-items: center;
+.discount__container {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .discount__title {
-  margin: 20px;
+  margin: 40px auto 20px;
   color: var(--box-lighter-color);
   text-align: left;
   font-style: normal;
   font-size: 1.8rem;
+}
+
+.discount__paragraph-1 {
+  font-size: 1.4rem;
+}
+
+.discount__countdown {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.discount__paragraph-2 {
+  font-size: 1.4rem;
 }
