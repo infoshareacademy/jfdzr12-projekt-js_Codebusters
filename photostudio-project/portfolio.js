@@ -1,41 +1,6 @@
 import { getPhotosData } from "./api/getData.js";
 import { addOrdersData } from "./api/pushData.js";
 
-// const products = [
-//   {
-//     id: "0",
-//     image: "examples_photos/family.jpg",
-//     title: "Family photo shoot",
-//     tags: ["family", "love"],
-//     location: "studio",
-//     cost: 10,
-//   },
-//   {
-//     id: "1",
-//     image: "examples_photos/newborn.jpg",
-//     title: "Newborn photo shoot",
-//     tags: ["newborn", "baby"],
-//     location: "home, studio",
-//     cost: 15,
-//   },
-//   {
-//     id: "2",
-//     image: "examples_photos/wedding.jpg",
-//     title: "Wedding photo shoot",
-//     tags: ["wedding", "love"],
-//     location: "outdoors, studio",
-//     cost: 10,
-//   },
-//   {
-//     id: "3",
-//     image: "examples_photos/air.jpg",
-//     title: "Air2Air sessions",
-//     tags: ["air2air", "nature"],
-//     location: "outdoors, air",
-//     cost: 100,
-//   },
-// ];
-
 function overlayDisplay() {
   const overlay = document.createElement("div");
   overlay.classList.add("overlay");
@@ -109,25 +74,6 @@ function showPortfolioPhotos() {
         price.classList.add("portfolio__price");
         price.innerText = `${foundProduct.price}$`;
         infoContainer.append(price);
-        /*
-        // TAGS CREATE AND DISPLAY
-        const tagsContainer = document.createElement("div");
-        tagsContainer.classList.add("portfolio__tags-container");
-  
-        foundProduct.tags.forEach((tag) => {
-          const tagDiv = document.createElement("div");
-          tagDiv.classList.add("portfolio__tag");
-          tagDiv.innerText = tag;
-          tagsContainer.prepend(tagDiv);
-          infoContainer.append(tagsContainer);
-        });
-  
-        // LOCATION CREATE AND DISPLAY
-        const locationText = document.createElement("p");
-        locationText.classList.add("portfolio__location-text");
-        locationText.innerText = `Location: ${foundProduct.location}`;
-        infoContainer.append(locationText);
-  */
 
         // IMAGE SIZES CREATE AND DISPLAY
         const locationText = document.createElement("p");
@@ -187,6 +133,7 @@ function showBasketModal() {
     overlayDisplay();
 
     let basket = JSON.parse(localStorage.getItem("boughtProducts"));
+    let discount = JSON.parse(localStorage.getItem("discountApplied"));
 
     if (!basket) {
       const basketEmptyContainer = document.createElement("div");
@@ -203,6 +150,14 @@ function showBasketModal() {
       basketModal.prepend(basketProductsContainer);
 
       basket.forEach((element) => {
+        const discountPercentage = 10;
+        const discountFactor = 1 - discountPercentage / 100;
+
+        if (discount) {
+          element.price *= discountFactor;
+          // localStorage.setItem("boughtProducts", JSON.stringify(basket));
+        }
+
         const basketProductContainer = document.createElement("div");
         basketProductContainer.classList.add("basket__product-container");
         basketProductsContainer.prepend(basketProductContainer);
@@ -314,9 +269,14 @@ function showDiscountModal() {
       overlayNone();
     }
 
-    let countdownTime = 60;
+    let countdownTime = 30;
 
     function startDiscountTimer() {
+      let discountTimeTrue = localStorage.getItem("discountApplied");
+      if (!discountTimeTrue) {
+        localStorage.setItem("discountApplied", "true");
+      }
+
       let discountTimer = setInterval(function () {
         countdownTime--;
         const minutes = Math.floor(countdownTime / 60);
@@ -324,12 +284,16 @@ function showDiscountModal() {
         discountTitle.innerText = `Limited time offer! Order now and get 10% discount. ${minutes}:${
           seconds < 10 ? "0" : ""
         }${seconds} Hurry up!`;
-
         if (countdownTime <= 0) {
           discountCloseModal();
         }
       }, 1000);
+
+      setTimeout(function () {
+        localStorage.removeItem("discountApplied");
+      }, 60000);
     }
+
     startDiscountTimer();
 
     sessionStorage.setItem("discountModalShown", "true");
