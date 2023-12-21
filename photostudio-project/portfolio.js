@@ -1,6 +1,8 @@
 import { getPhotosData } from "./api/getData.js";
 import { addOrdersData } from "./api/pushData.js";
 
+const discountPercentage = 10;
+
 function overlayDisplay() {
   const overlay = document.createElement("div");
   overlay.classList.add("overlay");
@@ -150,7 +152,6 @@ function showBasketModal() {
       basketModal.prepend(basketProductsContainer);
 
       basket.forEach((element) => {
-        const discountPercentage = 10;
         const discountFactor = 1 - discountPercentage / 100;
 
         if (discount) {
@@ -244,13 +245,31 @@ function showDiscountModal() {
 
     overlayDisplay();
 
-    // TITLE CREATE AND DISPLAY
+    const discountContainer = document.createElement("div");
+    discountContainer.classList.add("discount__container");
+    discountModal.append(discountContainer);
+
     const discountTitle = document.createElement("h3");
     discountTitle.classList.add("discount__title");
-    discountTitle.innerText = `SUPER PROPOSITION!`;
-    discountModal.append(discountTitle);
+    discountTitle.innerText = `Limited time offer!`;
+    discountContainer.append(discountTitle);
 
-    // PRICE MODAL CLOSE BUTTON
+    const discountParagraph1 = document.createElement("p");
+    discountParagraph1.classList.add("discount__paragraph-1");
+    discountParagraph1.innerText = `Order now and get ${discountPercentage}% discount.`;
+    discountContainer.append(discountParagraph1);
+
+    const discountCountDown = document.createElement("p");
+    discountCountDown.classList.add("discount__countdown");
+    discountCountDown.innerText = "Start!";
+    discountContainer.append(discountCountDown);
+
+    const discountParagraph2 = document.createElement("p");
+    discountParagraph2.classList.add("discount__paragraph-2");
+    discountParagraph2.innerText = "Hurry up!";
+    discountContainer.append(discountParagraph2);
+
+    // DISCOUNT MODAL CLOSE BUTTON
     const discountButtonClose = document.createElement("button");
     discountButtonClose.innerHTML = "x";
     discountButtonClose.classList.add("discount-modal__button-close");
@@ -269,7 +288,7 @@ function showDiscountModal() {
       overlayNone();
     }
 
-    let countdownTime = 30;
+    let countdownTime = 60;
 
     function startDiscountTimer() {
       let discountTimeTrue = localStorage.getItem("discountApplied");
@@ -281,9 +300,11 @@ function showDiscountModal() {
         countdownTime--;
         const minutes = Math.floor(countdownTime / 60);
         const seconds = countdownTime % 60;
-        discountTitle.innerText = `Limited time offer! Order now and get 10% discount. ${minutes}:${
+
+        discountCountDown.innerText = `${minutes}:${
           seconds < 10 ? "0" : ""
-        }${seconds} Hurry up!`;
+        }${seconds}`;
+
         if (countdownTime <= 0) {
           discountCloseModal();
         }
@@ -291,6 +312,7 @@ function showDiscountModal() {
 
       setTimeout(function () {
         localStorage.removeItem("discountApplied");
+        clearInterval(discountTimer);
       }, 60000);
     }
 
