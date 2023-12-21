@@ -133,6 +133,7 @@ function showBasketModal() {
     overlayDisplay();
 
     let basket = JSON.parse(localStorage.getItem("boughtProducts"));
+    let discount = JSON.parse(localStorage.getItem("discountApplied"));
 
     if (!basket) {
       const basketEmptyContainer = document.createElement("div");
@@ -149,6 +150,14 @@ function showBasketModal() {
       basketModal.prepend(basketProductsContainer);
 
       basket.forEach((element) => {
+        const discountPercentage = 10;
+        const discountFactor = 1 - discountPercentage / 100;
+
+        if (discount) {
+          element.price *= discountFactor;
+          // localStorage.setItem("boughtProducts", JSON.stringify(basket));
+        }
+
         const basketProductContainer = document.createElement("div");
         basketProductContainer.classList.add("basket__product-container");
         basketProductsContainer.prepend(basketProductContainer);
@@ -215,8 +224,6 @@ function showBasketModal() {
       basketModal.remove();
       overlayNone();
     }
-
-    applyDiscountToBasket();
   });
 }
 
@@ -291,22 +298,6 @@ function showDiscountModal() {
 
     sessionStorage.setItem("discountModalShown", "true");
   });
-}
-
-function applyDiscountToBasket() {
-  let basket = JSON.parse(localStorage.getItem("boughtProducts"));
-  let discount = JSON.parse(localStorage.getItem("discountApplied"));
-
-  if (basket && discount) {
-    const discountPercentage = 10;
-    const discountFactor = 1 - discountPercentage / 100;
-
-    basket.forEach((element) => {
-      element.price *= discountFactor;
-    });
-
-    localStorage.setItem("boughtProducts", JSON.stringify(basket));
-  }
 }
 
 showPortfolioPhotos();
