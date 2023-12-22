@@ -151,7 +151,7 @@ function showBasketModal() {
       basketProductsContainer.classList.add("basket__products-container");
       basketModal.prepend(basketProductsContainer);
 
-      basket.forEach((element) => {
+      let boughtProducts = basket.map((element) => {
         const discountFactor = 1 - discountPercentage / 100;
 
         if (discount) {
@@ -183,7 +183,12 @@ function showBasketModal() {
         basketPrice.classList.add("basket__price");
         basketPrice.innerText = `${element.price}$`;
         basketProductContainer.append(basketPrice);
+
+        console.log(element);
+        return element;
       });
+
+      console.log(boughtProducts);
 
       const basketTotalCostContainer = document.createElement("div");
       basketTotalCostContainer.classList.add("basket__total-cost-container");
@@ -203,8 +208,9 @@ function showBasketModal() {
       basketTotalCostContainer.appendChild(basketBuyButton);
 
       basketBuyButton.addEventListener("click", (e) => {
-        localStorage.clear();
+        addOrdersData(boughtProducts);
         basketCloseModal();
+        localStorage.clear();
       });
     }
 
