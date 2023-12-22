@@ -38,52 +38,43 @@ function showPortfolioPhotos() {
 
     photos.forEach((photo) => {
       photo.addEventListener("click", (e) => {
-        // MODAL CREATE
         const modal = document.createElement("div");
         modal.classList.add("portfolio__modal");
         document.body.prepend(modal);
 
         overlayDisplay();
 
-        // PORTFOLIO MODAL - IMAGE CREATE AND DISPLAY
         const imageContainer = document.createElement("div");
         imageContainer.classList.add("portfolio__image-container");
         modal.prepend(imageContainer);
-
         const image = document.createElement("img");
         image.classList.add("portfolio__image");
 
         const foundProduct = elements.find(
           (element) => element.id == photo.getAttribute("data-id")
         );
-
         image.src = `${foundProduct.url}`;
         imageContainer.prepend(image);
 
-        // INFO CONTAINER CREATE AND DISPLAY
         const infoContainer = document.createElement("div");
         infoContainer.classList.add("portfolio__info-container");
         modal.append(infoContainer);
 
-        // AUTHOR CREATE AND DISPLAY
         const title = document.createElement("h2");
         title.classList.add("portfolio__title");
         title.innerText = `${foundProduct.author}`;
         infoContainer.prepend(title);
 
-        // PRICE CREATE AND DISPLAY
         const price = document.createElement("p");
         price.classList.add("portfolio__price");
         price.innerText = `${foundProduct.price}$`;
         infoContainer.append(price);
 
-        // IMAGE SIZES CREATE AND DISPLAY
-        const locationText = document.createElement("p");
-        locationText.classList.add("portfolio-modal__size-text");
-        locationText.innerText = `Size: ${foundProduct.height} x ${foundProduct.width} px`;
-        infoContainer.append(locationText);
+        const imageSizeText = document.createElement("p");
+        imageSizeText.classList.add("portfolio-modal__size-text");
+        imageSizeText.innerText = `Size: ${foundProduct.height} x ${foundProduct.width} px`;
+        infoContainer.append(imageSizeText);
 
-        // BUTTON BUY CREATE AND DISPLAY
         const buttonBuy = document.createElement("button");
         buttonBuy.classList.add("portfolio__button-buy");
         buttonBuy.innerHTML = "Add to basket";
@@ -91,25 +82,21 @@ function showPortfolioPhotos() {
 
         buttonBuy.addEventListener("click", addToLocalStorage);
 
-        //ADD TO LOCAL STORAGE
         function addToLocalStorage() {
           let basket = JSON.parse(localStorage.getItem("boughtProducts"));
-
           if (!basket) {
             basket = [];
           }
-
           basket.push(foundProduct);
           localStorage.setItem("boughtProducts", JSON.stringify(basket));
         }
 
-        // CLOSE MODAL
         const buttonClose = document.createElement("button");
         buttonClose.innerHTML = "x";
         buttonClose.classList.add("modal__button-close");
         modal.append(buttonClose);
-
         buttonClose.addEventListener("click", closeModal);
+
         window.addEventListener("keydown", (e) => {
           if (e.key === "Escape") {
             closeModal();
@@ -151,12 +138,11 @@ function showBasketModal() {
       basketProductsContainer.classList.add("basket__products-container");
       basketModal.prepend(basketProductsContainer);
 
-      basket.forEach((element) => {
+      let boughtProducts = basket.map((element) => {
         const discountFactor = 1 - discountPercentage / 100;
 
         if (discount) {
           element.price *= discountFactor;
-          // localStorage.setItem("boughtProducts", JSON.stringify(basket));
         }
 
         const basketProductContainer = document.createElement("div");
@@ -172,17 +158,17 @@ function showBasketModal() {
         basketImage.src = `${element.url}`;
         basketImageContainer.prepend(basketImage);
 
-        // TITLE CREATE AND DISPLAY
         const basketTitle = document.createElement("p");
         basketTitle.classList.add("basket__title");
         basketTitle.innerText = `${element.author}`;
         basketProductContainer.append(basketTitle);
 
-        // PRICE CREATE AND DISPLAY
         const basketPrice = document.createElement("p");
         basketPrice.classList.add("basket__price");
         basketPrice.innerText = `${element.price}$`;
         basketProductContainer.append(basketPrice);
+
+        return { productId: element.id, price: element.price };
       });
 
       const basketTotalCostContainer = document.createElement("div");
@@ -203,12 +189,12 @@ function showBasketModal() {
       basketTotalCostContainer.appendChild(basketBuyButton);
 
       basketBuyButton.addEventListener("click", (e) => {
-        localStorage.clear();
+        addOrdersData(boughtProducts);
         basketCloseModal();
+        localStorage.clear();
       });
     }
 
-    // PRICE MODAL CLOSE BUTTON
     const basketButtonClose = document.createElement("button");
     basketButtonClose.innerHTML = "x";
     basketButtonClose.classList.add("price-modal__button-close");
@@ -269,12 +255,10 @@ function showDiscountModal() {
     discountParagraph2.innerText = "Hurry up!";
     discountContainer.append(discountParagraph2);
 
-    // DISCOUNT MODAL CLOSE BUTTON
     const discountButtonClose = document.createElement("button");
     discountButtonClose.innerHTML = "x";
     discountButtonClose.classList.add("discount-modal__button-close");
     discountModal.append(discountButtonClose);
-
     discountButtonClose.addEventListener("click", discountCloseModal);
 
     window.addEventListener("keydown", (e) => {
